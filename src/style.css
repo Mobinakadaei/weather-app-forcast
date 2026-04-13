@@ -70,6 +70,7 @@ a {
 
 .weather-app-temperature-container {
     display: flex;
+    margin-top: 20px;
 }
 
 .weather-app-temperature {
@@ -87,6 +88,38 @@ a {
 .weather-app-unit {
     margin-top: 10px;
     font-size: 28px;
+}
+
+.weather-app-forcast {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.forcast-day {
+    text-align: center;
+    color: rgba(39, 33, 66, 0.4);
+    font-size: 16px;
+}
+
+.forcast-temperatures {
+    display: flex;
+    justify-content: space-between;
+    color: #f65282;
+}
+
+.forcast-icon {
+    text-align: center;
+}
+
+.forcast-lower-temperature {
+    text-align: right;
+}
+
+.forcast-upper-temperature {
+    text-align: left;
+    font-weight: bold;
 }
 
 footer {
