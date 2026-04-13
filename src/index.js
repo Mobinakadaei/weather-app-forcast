@@ -14,6 +14,8 @@ function updateHtmlValuesBasedOnApi(response) {
     cloudsStatus.innerHTML = response.data.condition.description
     const weatherIcon = document.querySelector("#weather-app-icon")
     weatherIcon.innerHTML = `<img src="${response.data.condition.icon_url}" />`
+    let timeElement = document.querySelector("#time")
+    timeElement.innerHTML = dateAndHour(response.data.time)
 }
 
 function searchCity(cityName) {
@@ -22,15 +24,9 @@ function searchCity(cityName) {
     axios.get(apiUrl).then(updateHtmlValuesBasedOnApi)
 }
 
-function submitFunction(event) {
-    event.preventDefault();
-    let cityInput = document.querySelector("#search-form-input").value;
-    searchCity(cityInput)
-}
-
-function dateAndHour() {
+function dateAndHour(currentdDate) {
     const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    const date = new Date()
+    const date = new Date(currentdDate * 1000)
     let currentDay = weekDays[date.getDay()]
     let currentHour = date.getHours()
     if (currentHour < 10) {
@@ -42,11 +38,6 @@ function dateAndHour() {
     }
     return `${currentDay} ${currentHour}:${currentMinute}`
 }
-
-let timeElement = document.querySelector("#time")
-timeElement.innerHTML = dateAndHour()
-let searchForm = document.querySelector("form.search-form")
-document.addEventListener("submit", submitFunction)
 
 function displayForecast(response) {
     let forecastElement = document.querySelector("#weather-app-forecast")
@@ -69,12 +60,18 @@ function displayForecast(response) {
     forecastElement.innerHTML = forecastHtml;
 }
 
-
 function getForecastApi(cityName) {
     const apiKey = '4odc57b3f13ee7a2357a1tf4e037b8ad'
     const apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityName}&key=${apiKey}&units=metric`
     axios.get(apiUrl).then(displayForecast);
 }
 
-getForecastApi('paris')
-// displayForecast();
+function submitFunction(event) {
+    event.preventDefault();
+    let cityInput = document.querySelector("#search-form-input").value;
+    searchCity(cityInput);
+    getForecastApi(cityInput);
+}
+
+let searchForm = document.querySelector("form.search-form")
+document.addEventListener("submit", submitFunction)
