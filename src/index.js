@@ -47,3 +47,26 @@ let timeElement = document.querySelector("#time")
 timeElement.innerHTML = dateAndHour()
 let searchForm = document.querySelector("form.search-form")
 document.addEventListener("submit", submitFunction)
+
+function displayForecast() {
+    let forecastElement = document.querySelector("#weather-app-forecast")
+    let days = ['Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    let forecastHtml = "";
+
+    days.forEach(function (day) {
+        forecastHtml += `
+            <div class="weather-app-forecast-section">
+                <div class="forecast-day">${day}</div>
+                    <div class="forecast-icon">❄️</div>
+                        <div class="forecast-temperatures">
+                            <div class="forecast-upper-temperature">20°</div>
+                            <div class="forecast-lower-temperature">12°</div>
+                        </div>
+            </div>
+        `;
+    });
+
+    forecastElement.innerHTML = forecastHtml;
+}
+
+displayForecast();
