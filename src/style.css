@@ -101,24 +101,27 @@ a {
     text-align: center;
     color: rgba(39, 33, 66, 0.4);
     font-size: 16px;
+    line-height: 20px;
 }
 
 .forcast-temperatures {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     color: #f65282;
-}
-
-.forcast-icon {
     text-align: center;
 }
 
+.forcast-icon {
+    font-size: 38px;
+    text-align: center;
+    margin: 20px 0 20px 0;
+}
+
 .forcast-lower-temperature {
-    text-align: right;
+    padding-left: 15px;
 }
 
 .forcast-upper-temperature {
-    text-align: left;
     font-weight: bold;
 }
 
