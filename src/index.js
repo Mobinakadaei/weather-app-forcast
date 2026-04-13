@@ -76,5 +76,9 @@ function submitFunction(event) {
     getForecastApi(cityInput);
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    searchCity("paris");
+    getForecastApi("paris");
+});
 let searchForm = document.querySelector("form.search-form")
 document.addEventListener("submit", submitFunction)
