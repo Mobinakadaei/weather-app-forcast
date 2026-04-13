@@ -90,38 +90,38 @@ a {
     font-size: 28px;
 }
 
-.weather-app-forcast {
+.weather-app-forecast {
     display: flex;
     justify-content: space-between;
     margin: 30px auto;
     padding: 20px;
 }
 
-.forcast-day {
+.forecast-day {
     text-align: center;
     color: rgba(39, 33, 66, 0.4);
     font-size: 16px;
     line-height: 20px;
 }
 
-.forcast-temperatures {
+.forecast-temperatures {
     display: flex;
     justify-content: center;
     color: #f65282;
     text-align: center;
 }
 
-.forcast-icon {
+.forecast-icon {
     font-size: 38px;
     text-align: center;
     margin: 20px 0 20px 0;
 }
 
-.forcast-lower-temperature {
+.forecast-lower-temperature {
     padding-left: 15px;
 }
 
-.forcast-upper-temperature {
+.forecast-upper-temperature {
     font-weight: bold;
 }
 
