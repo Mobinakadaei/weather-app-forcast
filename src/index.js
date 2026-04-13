@@ -48,25 +48,33 @@ timeElement.innerHTML = dateAndHour()
 let searchForm = document.querySelector("form.search-form")
 document.addEventListener("submit", submitFunction)
 
-function displayForecast() {
+function displayForecast(response) {
     let forecastElement = document.querySelector("#weather-app-forecast")
-    let days = ['Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     let forecastHtml = "";
-
-    days.forEach(function (day) {
+    for (let i = 0; i < 5; i++) {
+        const time = response.data.daily[i].time
+        const date = new Date(time * 1000)
         forecastHtml += `
-            <div class="weather-app-forecast-section">
-                <div class="forecast-day">${day}</div>
-                    <div class="forecast-icon">❄️</div>
-                        <div class="forecast-temperatures">
-                            <div class="forecast-upper-temperature">20°</div>
-                            <div class="forecast-lower-temperature">12°</div>
-                        </div>
-            </div>
-        `;
-    });
-
+        <div class="weather-app-forecast-section">
+            <div class="forecast-day">${weekdays[date.getDay()]}</div>
+                <div class="forecast-icon"><img src="${response.data.daily[i].condition.icon_url}" /></div>
+                    <div class="forecast-temperatures">
+                        <div class="forecast-upper-temperature">${Math.round(response.data.daily[i].temperature.maximum)}°</div>
+                        <div class="forecast-lower-temperature">${Math.round(response.data.daily[i].temperature.minimum)}°</div>
+                    </div>
+        </div>
+    `;
+    };
     forecastElement.innerHTML = forecastHtml;
 }
 
-displayForecast();
+
+function getForecastApi(cityName) {
+    const apiKey = '4odc57b3f13ee7a2357a1tf4e037b8ad'
+    const apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityName}&key=${apiKey}&units=metric`
+    axios.get(apiUrl).then(displayForecast);
+}
+
+getForecastApi('paris')
+// displayForecast();
