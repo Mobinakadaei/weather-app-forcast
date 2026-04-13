@@ -112,7 +112,7 @@ a {
 }
 
 .forecast-icon {
-    font-size: 38px;
+    width: 100%;
     text-align: center;
     margin: 10px 0 10px 0;
 }

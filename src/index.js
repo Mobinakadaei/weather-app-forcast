@@ -39,16 +39,19 @@ function dateAndHour(currentdDate) {
     return `${currentDay} ${currentHour}:${currentMinute}`
 }
 
+function forecastWeekdays(date) {
+    let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    let currentDate = new Date(date * 1000)
+    return weekdays[currentDate.getDay()]
+}
+
 function displayForecast(response) {
     let forecastElement = document.querySelector("#weather-app-forecast")
-    let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     let forecastHtml = "";
     for (let i = 0; i < 5; i++) {
-        const time = response.data.daily[i].time
-        const date = new Date(time * 1000)
         forecastHtml += `
         <div class="weather-app-forecast-section">
-            <div class="forecast-day">${weekdays[date.getDay()]}</div>
+            <div class="forecast-day">${forecastWeekdays(response.data.daily[i].time)}</div>
                 <div class="forecast-icon"><img src="${response.data.daily[i].condition.icon_url}" /></div>
                     <div class="forecast-temperatures">
                         <div class="forecast-upper-temperature">${Math.round(response.data.daily[i].temperature.maximum)}°</div>
